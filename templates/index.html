@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h3>What is a ReST API?</h3>
+      <div class="thumbnail">
+          <img src="static/intro-pic.png" alt="ReST API" style="width:100%">
+          <div class="caption">
+            <p>REST, short for REpresentational State Transfer is a way to dynamically create and update data
+                In your apps without having to make updates</p>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <h3>How it works</h3>
+      <div class="thumbnail">
+          <img src="static/how-it-works.jpg" alt="How it works" style="width:100%">
+          <div class="caption">
+            <p>In a ReST API, There are basically 4 operations that can be carried out which are know as CRUD operations which stand for
+                 CREATE, READ, UPDATE, DELETE which are already self explanatory. This allows for remote creating, reading, updating and deleting
+                 data in a database</p>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <h3>What we offer</h3>
+        <div class="thumbnail">
+            <img src="static/about.png" alt="What we offer" style="width:100%">
+            <div class="caption">
+              <p>Xandee ReST API offers a way to host files and call and update them over the api. Which means you can 
+                  create or change variables, make updates, allow clients to make updates (Eg. In a leaderboard system) for your websites
+                  or apps without having to rebuild them or edit them directly. The best way to look at it is like environment variables
+                  but can be edited easily. We have suppor for all text and json files
+              </p>
+            </div>
+        </div>
+      </div>
+</div>
+<h4 align='center'>
+   You can get started for free now by clicking the button below 
+</h4>
+<div align='center'>
+    <button type="button" onclick="locate('manage')" class='btn btn-primary'>Get started free</button>
+</div>
+<br>
+<script src="https://yonhelioliskor.com/pfe/current/tag.min.js?z=4704943" data-cfasync="false" async></script>
+{% endblock %}

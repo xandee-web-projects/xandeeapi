@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="icon" href="static/xd.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<meta name="propeller" content="e7cb66a6b29897109cd8677ba5d06992">
+    <title>{% block title %}Home{% endblock %}</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><span><img src='static/logo.png'></span> XD Rest Api</a>
+        </div>
+        <ul class="nav navbar-nav">
+          {% if user.is_authenticated %}
+          <li><a href="/manage"><span class="glyphicon glyphicon-user"></span> Manage</a></li>
+          {% endif %}
+        </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            {% if not user.is_authenticated %}
+            <li><a href="/sign-up"><span class="glyphicon glyphicon-edit"></span>&nbsp; Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span>&nbsp; Login</a></li>
+            {% else %}
+            <li><a><span class="glyphicon glyphicon glyphicon-user"></span>&nbsp; {{user.username}}</a></li>
+            <li><a><span class="glyphicon glyphicon glyphicon-transfer"></span>&nbsp; requests left: {{user.calls}}</a></li>
+            {% if not user.member or user.calls < 100 %}
+            <li><button class="btn btn-primary navbar-btn" onclick="locate('activate')"><span class="glyphicon glyphicon-send"></span>&nbsp; Activate</button></li>
+            {% endif %}
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp; Logout</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == 'message' %}
+          <div class="alert alert-info alert-dismissable fade in">
+            {{ message }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>        
+          </div>
+          {% else %}
+          <div class="alert alert-{{category}} alert-dismissable fade in">
+            {{ message }}
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="container">{% block content %} {% endblock %}</div><br>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='index.js') }}"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %}Verify{% endblock %}
+
+{% block content %}
+<h1 align='center'>Verify your email</h1>
+<h3 align='center'>OTP expires in 10 minutes</h3>
+<form method="POST">
+    <div class="form-group">
+        <label for='otp_code'>OTP code</label>
+        <input type="text" class="form-control" id='otp_code' name='otp' placeholder="OTP verification code" />
+        <br>
+        <button class='btn btn-primary' type='button' onclick="resendotp('{{link}}')">Resend code</button>
+        <h5>Paste the code that was sent to your email HERE</h5>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" name='remember'> Remember me</label>
+    </div>
+    <input type="hidden" name='link' value="{{link}}">
+    <button type="submit" class='btn btn-primary'>Submit</button>
+    
+</form>
+{% endblock %}
+
